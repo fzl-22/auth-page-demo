@@ -8,7 +8,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>(); 
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
@@ -21,79 +21,81 @@ class LoginPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24,
-            vertical: 36,
-          ),
-          child: Form(
-            key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text(
-                  "Login Here",
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  "Welcome back you've been missed!",
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 24),
-                TextInputField(
-                  controller: emailController,
-                  hintText: "Email",
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Harap isikan email";
-                    }
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+              vertical: 36,
+            ),
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Text(
+                    "Login Here",
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    "Welcome back you've been missed!",
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 24),
+                  TextInputField(
+                    controller: emailController,
+                    hintText: "Email",
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Harap isikan email";
+                      }
 
-                    if(!Validator.emailIsValid(value)){
-                      return "Email Tidak Valid";
-                    }
+                      if (!Validator.emailIsValid(value)) {
+                        return "Email Tidak Valid";
+                      }
 
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 12),
-                TextInputField.password(
-                  controller: passwordController,
-                  hintText: "Password",
-                  keyboardType: TextInputType.visiblePassword,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Harap isikan password";
-                    }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 12),
+                  TextInputField.password(
+                    controller: passwordController,
+                    hintText: "Password",
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Harap isikan password";
+                      }
 
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 36),
-                ActionButton(
-                  text: "Login",
-                  onPressed: () {
-                    formKey.currentState!.save();
-                
-                    if (!formKey.currentState!.validate()){
-                      return;
-                    }
-                
-                    // kasih regex
-                
-                    // print("LOGIN");
-                  },
-                ),
-              ],
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 36),
+                  ActionButton(
+                    text: "Login",
+                    onPressed: () {
+                      formKey.currentState!.save();
+
+                      if (!formKey.currentState!.validate()) {
+                        return;
+                      }
+
+                      // kasih regex
+
+                      // print("LOGIN");
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
