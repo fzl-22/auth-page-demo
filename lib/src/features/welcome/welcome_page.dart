@@ -1,5 +1,6 @@
 import 'package:auth_page_demo/src/commons/widgets/buttons/action_button.dart';
 import 'package:auth_page_demo/src/features/auth/login_page.dart';
+import 'package:auth_page_demo/src/features/auth/register_page.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -25,41 +26,42 @@ class WelcomePage extends StatelessWidget {
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  "Explore all the existing job roles based on your interest and study major",
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 36),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: ActionButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const LoginPage(),
-                            ),
-                          );
-                        },
-                        text: "Login",
-                      ),
-                    ),
-                    const SizedBox(width: 24),
-                    Expanded(
-                      child: ActionButton.text(
-                        onPressed: () {},
-                        text: "Register",
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              Text(
+                "Explore all the existing job roles based on your interest and study major",
+                style: Theme.of(context).textTheme.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 36),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ActionButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ),
+                      );
+                    },
+                    text: "Login",
+                  ),
+                  const SizedBox(width: 24),
+                  ActionButton.text(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterPage(),
+                        ),
+                      );
+                    },
+                    text: "Register",
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

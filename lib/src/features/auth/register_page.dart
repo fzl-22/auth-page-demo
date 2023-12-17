@@ -3,16 +3,18 @@ import 'package:auth_page_demo/src/commons/widgets/fields/text_input_field.dart'
 import 'package:auth_page_demo/src/features/auth/validator.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>(); 
     final TextEditingController emailController = TextEditingController();
+    final TextEditingController namaController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -25,7 +27,7 @@ class LoginPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 24,
-            vertical: 36,
+            vertical: 16,
           ),
           child: Form(
             key: formKey,
@@ -34,7 +36,7 @@ class LoginPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Text(
-                  "Login Here",
+                  "Register Here",
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
@@ -42,13 +44,26 @@ class LoginPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  "Welcome back you've been missed!",
+                  "Welcome aboard, we'll begin our way with this simple registration!",
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
+                TextInputField(
+                  controller: namaController,
+                  hintText: "Name",
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Harap isikan Nama";
+                    }
+
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 12),
                 TextInputField(
                   controller: emailController,
                   hintText: "Email",
@@ -75,23 +90,32 @@ class LoginPage extends StatelessWidget {
                       return "Harap isikan password";
                     }
 
+                    if(!Validator.passwordIsValid(value)){
+                      return "Password Minimal 8 karakter";
+                    }
+
                     return null;
                   },
                 ),
                 const SizedBox(height: 36),
-                ActionButton(
-                  text: "Login",
-                  onPressed: () {
-                    formKey.currentState!.save();
-                
-                    if (!formKey.currentState!.validate()){
-                      return;
-                    }
-                
-                    // kasih regex
-                
-                    // print("LOGIN");
-                  },
+                Row(
+                  children: [
+                    ActionButton(
+                      text: "Register",
+                      onPressed: () {
+                        formKey.currentState!.save();
+
+                        if (!formKey.currentState!.validate()){
+                          return;
+                        }
+
+                        // kasih regex
+
+
+                        // print("LOGIN");
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
