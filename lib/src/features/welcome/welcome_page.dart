@@ -1,5 +1,4 @@
 import 'package:auth_page_demo/src/commons/widgets/buttons/action_button.dart';
-import 'package:auth_page_demo/src/commons/widgets/buttons/action_text_button.dart';
 import 'package:auth_page_demo/src/features/auth/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -37,20 +36,24 @@ class WelcomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  ActionButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
-                        ),
-                      );
-                    },
-                    text: "Login",
+                  Expanded(
+                    child: ActionButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ),
+                        );
+                      },
+                      text: "Login",
+                    ),
                   ),
                   const SizedBox(width: 24),
-                  ActionTextButton(
-                    onPressed: () {},
-                    text: "Register",
+                  Expanded(
+                    child: ActionButton.text(
+                      onPressed: () {},
+                      text: "Register",
+                    ),
                   ),
                 ],
               ),
