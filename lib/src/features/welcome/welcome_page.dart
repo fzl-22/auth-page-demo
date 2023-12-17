@@ -1,5 +1,4 @@
 import 'package:auth_page_demo/src/commons/widgets/buttons/action_button.dart';
-import 'package:auth_page_demo/src/commons/widgets/buttons/action_text_button.dart';
 import 'package:auth_page_demo/src/features/auth/login_page.dart';
 import 'package:auth_page_demo/src/features/auth/register_page.dart';
 import 'package:flutter/material.dart';
@@ -11,21 +10,22 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24,
-            vertical: 36,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Image.asset("assets/welcome_image.png"),
-              const SizedBox(height: 24),
-              Text(
-                "Discover Your Dream Job Here",
-                style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+              vertical: 36,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Image.asset("assets/welcome_image.png"),
+                const SizedBox(height: 24),
+                Text(
+                  "Discover Your Dream Job Here",
+                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 24),
@@ -49,7 +49,7 @@ class WelcomePage extends StatelessWidget {
                     text: "Login",
                   ),
                   const SizedBox(width: 24),
-                  ActionTextButton(
+                  ActionButton.text(
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(

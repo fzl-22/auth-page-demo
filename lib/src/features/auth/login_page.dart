@@ -79,23 +79,19 @@ class LoginPage extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 36),
-                Row(
-                  children: [
-                    ActionButton(
-                      text: "Login",
-                      onPressed: () {
-                        formKey.currentState!.save();
-
-                        if (!formKey.currentState!.validate()){
-                          return;
-                        }
-
-                        // kasih regex
-
-                        // print("LOGIN");
-                      },
-                    ),
-                  ],
+                ActionButton(
+                  text: "Login",
+                  onPressed: () {
+                    formKey.currentState!.save();
+                
+                    if (!formKey.currentState!.validate()){
+                      return;
+                    }
+                
+                    // kasih regex
+                
+                    // print("LOGIN");
+                  },
                 ),
               ],
             ),
