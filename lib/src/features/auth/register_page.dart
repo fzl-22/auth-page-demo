@@ -1,5 +1,6 @@
 import 'package:auth_page_demo/src/commons/widgets/buttons/action_button.dart';
 import 'package:auth_page_demo/src/commons/widgets/fields/text_input_field.dart';
+import 'package:auth_page_demo/src/features/auth/validator.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -9,14 +10,11 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>(); 
     final TextEditingController emailController = TextEditingController();
+    final TextEditingController namaController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
-    RegExp must8 = RegExp('.{8,}');
-    RegExp validEmail = RegExp(
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
-
-
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -29,7 +27,7 @@ class RegisterPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 24,
-            vertical: 36,
+            vertical: 16,
           ),
           child: Form(
             key: formKey,
@@ -54,7 +52,7 @@ class RegisterPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 TextInputField(
-                  controller: emailController,
+                  controller: namaController,
                   hintText: "Name",
                   keyboardType: TextInputType.text,
                   validator: (value) {
@@ -75,6 +73,10 @@ class RegisterPage extends StatelessWidget {
                       return "Harap isikan email";
                     }
 
+                    if(!Validator.emailIsValid(value)){
+                      return "Email Tidak Valid";
+                    }
+
                     return null;
                   },
                 ),
@@ -88,6 +90,10 @@ class RegisterPage extends StatelessWidget {
                       return "Harap isikan password";
                     }
 
+                    if(!Validator.passwordIsValid(value)){
+                      return "Password Minimal 8 karakter";
+                    }
+
                     return null;
                   },
                 ),
@@ -95,7 +101,7 @@ class RegisterPage extends StatelessWidget {
                 Row(
                   children: [
                     ActionButton(
-                      text: "Login",
+                      text: "Register",
                       onPressed: () {
                         formKey.currentState!.save();
 
@@ -104,6 +110,7 @@ class RegisterPage extends StatelessWidget {
                         }
 
                         // kasih regex
+
 
                         // print("LOGIN");
                       },

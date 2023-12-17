@@ -1,5 +1,6 @@
 import 'package:auth_page_demo/src/commons/widgets/buttons/action_button.dart';
 import 'package:auth_page_demo/src/commons/widgets/fields/text_input_field.dart';
+import 'package:auth_page_demo/src/features/auth/validator.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -55,6 +56,10 @@ class LoginPage extends StatelessWidget {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Harap isikan email";
+                    }
+
+                    if(!Validator.emailIsValid(value)){
+                      return "Email Tidak Valid";
                     }
 
                     return null;
