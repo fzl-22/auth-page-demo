@@ -8,7 +8,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>(); 
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController namaController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
@@ -73,7 +73,7 @@ class RegisterPage extends StatelessWidget {
                       return "Harap isikan email";
                     }
 
-                    if(!Validator.emailIsValid(value)){
+                    if (!Validator.emailIsValid(value)) {
                       return "Email Tidak Valid";
                     }
 
@@ -90,7 +90,7 @@ class RegisterPage extends StatelessWidget {
                       return "Harap isikan password";
                     }
 
-                    if(!Validator.passwordIsValid(value)){
+                    if (!Validator.passwordIsValid(value)) {
                       return "Password Minimal 8 karakter";
                     }
 
@@ -98,24 +98,19 @@ class RegisterPage extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 36),
-                Row(
-                  children: [
-                    ActionButton(
-                      text: "Register",
-                      onPressed: () {
-                        formKey.currentState!.save();
+                ActionButton(
+                  text: "Register",
+                  onPressed: () {
+                    formKey.currentState!.save();
 
-                        if (!formKey.currentState!.validate()){
-                          return;
-                        }
+                    if (!formKey.currentState!.validate()) {
+                      return;
+                    }
 
-                        // kasih regex
+                    // kasih regex
 
-
-                        // print("LOGIN");
-                      },
-                    ),
-                  ],
+                    // print("LOGIN");
+                  },
                 ),
               ],
             ),
