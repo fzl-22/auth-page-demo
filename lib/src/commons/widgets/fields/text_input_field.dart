@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TextInputField extends StatelessWidget {
+class TextInputField extends StatefulWidget {
   const TextInputField({
     super.key,
     required this.controller,
@@ -24,12 +24,39 @@ class TextInputField extends StatelessWidget {
   final TextInputType keyboardType;
 
   @override
+  State<TextInputField> createState() => _TextInputFieldState();
+}
+
+class _TextInputFieldState extends State<TextInputField> {
+  bool _isVisible = false;
+
+  void onToggleVisibility() {
+    setState(() {
+      _isVisible = !_isVisible;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
       decoration: InputDecoration(
-        hintText: hintText,
+        suffixIcon: widget.isPassword
+            ? GestureDetector(
+                onTap: onToggleVisibility,
+                child: _isVisible
+                    ? Icon(
+                        Icons.visibility,
+                        color: Theme.of(context).colorScheme.error,
+                      )
+                    : Icon(
+                        Icons.visibility_off,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+              )
+            : null,
+        hintText: widget.hintText,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
@@ -60,8 +87,8 @@ class TextInputField extends StatelessWidget {
             Theme.of(context).colorScheme.inversePrimary.withOpacity(0.4),
         contentPadding: const EdgeInsets.all(16),
       ),
-      obscureText: isPassword,
-      validator: validator,
+      obscureText: widget.isPassword && !_isVisible,
+      validator: widget.validator,
     );
   }
 }
